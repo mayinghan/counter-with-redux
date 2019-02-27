@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import { counter, add, reduce, addAsync } from './index.redux'
+import { counter } from './index.redux'
+import { Provider } from 'react-redux'
 // import * as serviceWorker from './serviceWorker';
 const reduxDevtools = window.devToolsExtension?window.devToolsExtension():()=>{}
 
@@ -15,8 +16,14 @@ const store = createStore(counter, compose(
 ))
 
 function render() {
+
     //for decoupling, we pass in the functions from redux as parameters
-    ReactDOM.render(<App store={store} add={add} reduce={reduce} addAsync={addAsync}/>, document.getElementById('root'));
+    ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+    , document.getElementById('root')
+    );
 }
 render()
 

@@ -1,14 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { add, reduce, addAsync } from './index.redux'
 //dont import index.redux here to prevent coupling
 // import { add, reduce } from './index.redux'
 
 class App extends React.Component {
-	constructor(props) {
-		super(props)
-	}
 	render() {
-		const store = this.props.store
-		const num = store.getState()
+		// const store = this.props.store
+		const num = this.props.num
 		//decouple components and redux
 		const add = this.props.add
 		const reduce = this.props.reduce
@@ -17,12 +16,20 @@ class App extends React.Component {
 			<div>
 				<h1>Now the number is {num}</h1>
 				{/*use dispatch function to change the state */}
-				<button onClick={() => store.dispatch(add())}>Add number</button>
-				<button onClick={() => store.dispatch(reduce())}>Reduce number</button>
-				<button onClick={() => store.dispatch(addAsync())}>Add number after 2s</button>
+				<button onClick={() => add()}>Add number</button>
+				<button onClick={() => reduce()}>Reduce number</button>
+				<button onClick={() => addAsync()}>Add number after 2s</button>
 			</div>
 		)
 	}
 }
 
+//Using connect API
+//first param: state / attributes
+const mapStatetoProps = (state) => {
+	return {num:state}
+}
+//second param: methods
+const actionCreators = { add, reduce, addAsync}
+App = connect(mapStatetoProps, actionCreators)(App)
 export default App
