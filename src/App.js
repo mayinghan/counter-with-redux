@@ -4,6 +4,14 @@ import { add, reduce, addAsync } from './index.redux'
 //dont import index.redux here to prevent coupling
 // import { add, reduce } from './index.redux'
 
+//Using connect API
+//first param: state / attributes
+const mapStatetoProps = (state) => {
+	return {num:state}
+}
+//second param: methods
+const actionCreators = { add, reduce, addAsync}
+@connect(mapStatetoProps, actionCreators)
 class App extends React.Component {
 	render() {
 		// const store = this.props.store
@@ -24,12 +32,6 @@ class App extends React.Component {
 	}
 }
 
-//Using connect API
-//first param: state / attributes
-const mapStatetoProps = (state) => {
-	return {num:state}
-}
-//second param: methods
-const actionCreators = { add, reduce, addAsync}
+
 App = connect(mapStatetoProps, actionCreators)(App)
 export default App
