@@ -21,3 +21,11 @@ export function add() {
 export function reduce() {
     return {type:SUBT}
 }
+export function addAsync() {
+    //add after two second
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(add())
+        }, 2000)
+    }
+}
