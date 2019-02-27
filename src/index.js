@@ -2,12 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
 import App from './App';
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { counter, add, reduce, addAsync } from './index.redux'
 // import * as serviceWorker from './serviceWorker';
+const reduxDevtools = window.devToolsExtension?window.devToolsExtension():()=>{}
 
-const store = createStore(counter, applyMiddleware(thunk))
+//using compose to compose two functions
+const store = createStore(counter, compose(
+    applyMiddleware(thunk),
+    reduxDevtools
+))
 
 function render() {
     //for decoupling, we pass in the functions from redux as parameters

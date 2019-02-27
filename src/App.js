@@ -1,5 +1,4 @@
 import React from 'react'
-import { addAsync } from './index.redux';
 //dont import index.redux here to prevent coupling
 // import { add, reduce } from './index.redux'
 
