@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 // import './index.css';
 import App from './App';
 import { createStore } from 'redux'
-import { counter } from './index.redux'
+import { counter, add, reduce } from './index.redux'
 // import * as serviceWorker from './serviceWorker';
 
 const store = createStore(counter)
 
 function render() {
-    ReactDOM.render(<App store={store} />, document.getElementById('root'));
+    //for decoupling, we pass in the functions from redux as parameters
+    ReactDOM.render(<App store={store} add={add} reduce={reduce} />, document.getElementById('root'));
 }
 render()
 
