@@ -7,7 +7,7 @@ import { add, reduce, addAsync } from './index.redux'
 //Using connect API
 //first param: state / attributes
 const mapStatetoProps = (state) => {
-	return {num:state}
+	return {num:state.counter}
 }
 //second param: methods
 const actionCreators = { add, reduce, addAsync}
@@ -33,5 +33,5 @@ class App extends React.Component {
 }
 
 
-App = connect(mapStatetoProps, actionCreators)(App)
+//App = connect(mapStatetoProps, actionCreators)(App)
 export default App
